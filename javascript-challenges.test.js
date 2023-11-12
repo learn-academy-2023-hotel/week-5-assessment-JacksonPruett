@@ -56,8 +56,6 @@ const codedMessage = (string) => {
     // match is the parameter of the arrow function, representing the matched character from the regular expression. The square brackets [match] are used to dynamically access the value associated with the matched character in the object.
   }
 
-//   console.log(codedMessage(secretCodeWord3))
-
 
 // --------------------2) Create a function that takes in an array of 5 numbers and determines whether or not the array is a "full house". A full house is exactly one pair and one three of a kind.
 
@@ -69,22 +67,22 @@ const codedMessage = (string) => {
 describe("fullHouse", () => {
     // Create another function with an it statement, followed up with the original prompt and another anonymous function
     it("takes in an array of 5 numbers and determines whether or not the array is a full house.", () => {
-      const hand1 = [5, 5, 5, 3, 3]
-      // Expected output: true
-      const hand2 = [5, 5, 3, 3, 4]
-      // Expected output: false
-      const hand3 = [5, 5, 5, 5, 4]
-      // Expected output: false
-      const hand4 = [7, 2, 7, 2, 7]
-      // Expected output: true
-    // expect function name (variable name) to equal (output)   
-    expect(fullHouse(hand1)).toEqual("true")    
-    // expect function name (variable name) to equal (output)   
-    expect(fullHouse(hand2)).toEqual("false")    
-    // expect function name (variable name) to equal (output)   
-    expect(fullHouse(hand3)).toEqual("false")    
-    // expect function name (variable name) to equal (output)   
-    expect(fullHouse(hand4)).toEqual("true")    
+        const hand1 = [5, 5, 5, 3, 3]
+        // Expected output: true
+        const hand2 = [5, 5, 3, 3, 4]
+        // Expected output: false
+        const hand3 = [5, 5, 5, 5, 4]
+        // Expected output: false
+        const hand4 = [7, 2, 7, 2, 7]
+        // Expected output: true
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand1)).toEqual(true)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand2)).toEqual(false)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand3)).toEqual(false)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand4)).toEqual(true)    
   })
 })
 
@@ -92,14 +90,22 @@ describe("fullHouse", () => {
 
 // // b) Create the function that makes the test pass.
 
-// const fullHouse = (array) => { 
-//     const sorted = array.sort
-//         if (sorted[0] === sorted[1, 2] && sorted[3] === sorted[4]){
-//             return "true"
-//         } else {
-//             return "false"
-//         }
-// }
+// Pseudo code: 
+// Function called fullHouse with one parameter of hand
+const fullHouse = (hand) => {
+    // Function called frequency to hold an empty array
+    const frequency = []
+    // loop for each number in the array
+    hand.forEach(number => {
+        // check for frequency of each number in the array and store it in the frequency variable, incrementing by count of 1
+        // logical OR || it takes a zero 0
+        frequency[number] = (frequency[number] || 0) + 1 // Personal note: number parameter is in square brackets b/c its a number
+    })
+    // since arrays are objects, I can use the Object method.
+    // values is equal to the values of the Object, frequency.
+    const values = Object.values(frequency)
+    // return the included pair (2) values AND the included 3 of a kind (3) values
+    // if both conditions are true it will return true, otherwise it will return false.
+    return values.includes(2) && values.includes(3)
+}
 
-
-// Pseudo code: I have no clue how to solve this one. I tried a few different things, Googled, and asked for assistance from other people. Something just isn't clicking so any guidance at all would be greatly appreciated.
