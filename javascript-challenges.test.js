@@ -14,30 +14,98 @@
 
 // a) Create a test with expect statements using the variables provided.
 
-const secretCodeWord1 = "Lackadaisical"
-// Expected output: "L4ck4d41s1c4l"
-const secretCodeWord2 = "Gobbledygook"
-// Expected output: "G0bbl3dyg00k"
-const secretCodeWord3 = "Eccentric"
-// Expected output: "3cc3ntr1c"
+
+// Create a test function with the name in double quotes, ending an anonymous function
+
+// Pseudo code:
+    // Create another function with an it statement, followed up with the original prompt and another anonymous function
+    describe ("codedMessage", () => {
+      it("takes in a string and returns a string with a coded message.", () => {
+        const secretCodeWord1 = "Lackadaisical"
+          // Expected output: "L4ck4d41s1c4l"
+        const secretCodeWord2 = "Gobbledygook"
+          // Expected output: "G0bbl3dyg00k"
+        const secretCodeWord3 = "Eccentric"
+          // Expected output: "3cc3ntr1c"
+        expect(codedMessage(secretCodeWord1)).toEqual("L4ck4d41s1c4l");
+        expect(codedMessage(secretCodeWord2)).toEqual("G0bbl3dyg00k");
+        expect(codedMessage(secretCodeWord3)).toEqual("3cc3ntr1c");     
+  })
+})
+
+// ReferenceError: codedMessage is not defined
 
 // b) Create the function that makes the test pass.
 
-// Pseudo code:
+        const secretCodeWord1 = "Lackadaisical"
+          // Expected output: "L4ck4d41s1c4l"
+        const secretCodeWord2 = "Gobbledygook"
+          // Expected output: "G0bbl3dyg00k"
+        const secretCodeWord3 = "Eccentric"
+          // Expected output: "3cc3ntr1c"
+
+// Create a function called codedMessage that takes one parameter
+const codedMessage = (string) => {
+    // return string using the replace method to replace parts of the string using a regular expression. It takes the matched character and returns the corresponding coded value from the object. 
+    // "g" flag attached to the regex searches for occurrences that match the object 
+    // "i" flag looks for case insensitivies.
+    // The arrow function is called for each match found by the regex. It takes the matched substring ('match') as a parameter
+    // Match then uses the .toLowerCase method to convert matched characters to lower case to ensure the mapping works for all
+    // The logical OR || operator is used to provide a fallback. If the lookup result is 'undefined' it returns the original character. Simply, if it is a vowel the replace method will replace it with it's coded value from the object, otherwise it remains unchanged. Without "|| match" it will return undefined rather than as the original letter.
+    return string.replace(/[aeio]/gi, match => ({ 'a': '4', 'e': '3', 'i': '1', 'o': '0' }[match.toLowerCase()] || match))
+    // match is the parameter of the arrow function, representing the matched character from the regular expression. The square brackets [match] are used to dynamically access the value associated with the matched character in the object.
+  }
+
 
 // --------------------2) Create a function that takes in an array of 5 numbers and determines whether or not the array is a "full house". A full house is exactly one pair and one three of a kind.
 
 // a) Create a test with expect statements using the variable provided.
 
-const hand1 = [5, 5, 5, 3, 3]
-// Expected output: true
-const hand2 = [5, 5, 3, 3, 4]
-// Expected output: false
-const hand3 = [5, 5, 5, 5, 4]
-// Expected output: false
-const hand4 = [7, 2, 7, 2, 7]
-// Expected output: true
 
-// b) Create the function that makes the test pass.
 
-// Pseudo code:
+// Create a test function with the name in double quotes, ending an anonymous function
+describe("fullHouse", () => {
+    // Create another function with an it statement, followed up with the original prompt and another anonymous function
+    it("takes in an array of 5 numbers and determines whether or not the array is a full house.", () => {
+        const hand1 = [5, 5, 5, 3, 3]
+        // Expected output: true
+        const hand2 = [5, 5, 3, 3, 4]
+        // Expected output: false
+        const hand3 = [5, 5, 5, 5, 4]
+        // Expected output: false
+        const hand4 = [7, 2, 7, 2, 7]
+        // Expected output: true
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand1)).toEqual(true)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand2)).toEqual(false)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand3)).toEqual(false)    
+        // expect function name (variable name) to equal (output)   
+        expect(fullHouse(hand4)).toEqual(true)    
+  })
+})
+
+// // ReferenceError: fullHouse is not defined
+
+// // b) Create the function that makes the test pass.
+
+// Pseudo code: 
+// Function called fullHouse with one parameter of hand
+const fullHouse = (hand) => {
+    // Function called frequency to hold an empty array
+    const frequency = []
+    // loop for each number in the array
+    hand.forEach(number => {
+        // check for frequency of each number in the array and store it in the frequency variable, incrementing by count of 1
+        // logical OR || it takes a zero 0
+        frequency[number] = (frequency[number] || 0) + 1 // Personal note: number parameter is in square brackets b/c its a number
+    })
+    // since arrays are objects, I can use the Object method.
+    // values is equal to the values of the Object, frequency.
+    const values = Object.values(frequency)
+    // return the included pair (2) values AND the included 3 of a kind (3) values
+    // if both conditions are true it will return true, otherwise it will return false.
+    return values.includes(2) && values.includes(3)
+}
+
